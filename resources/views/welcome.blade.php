@@ -203,20 +203,54 @@
             color: #64748b;
         }
 
-        /* Responsive para celulares */
+        /* --- ESTILOS DEL BOTÓN HAMBURGUESA --- */
+        .hamburger {
+            display: none; /* Oculto en escritorio */
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            background: none;
+            border: none;
+        }
+
+        /* 📱 RESPONSIVE (CELULARES) - MENÚ BURGER */
         @media (max-width: 768px) {
-            .hero {
-                height: 600px;
+            .hamburger {
+                display: block; /* Visible en celular */
             }
 
-            /* En celular reducimos la altura */
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-
-            .cta-container {
+            .nav-buttons {
+                display: none; /* Ocultos por defecto */
                 flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%; /* Justo debajo del navbar */
+                left: 0;
+                background-color: rgba(15, 23, 42, 0.98); /* Fondo oscuro casi sólido */
+                padding: 20px;
+                border-bottom: 2px solid var(--primary-blue);
+                gap: 15px;
             }
+
+            /* Esta clase se agrega con JS para mostrar el menú */
+            .nav-buttons.active {
+                display: flex;
+            }
+
+            .nav-buttons a {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                display: block;
+                padding: 15px; /* Más área para el dedo */
+                font-size: 1.1rem;
+            }
+            
+            /* Ajustes visuales extra */
+            .hero { height: 600px; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .cta-container { flex-direction: column; }
+            .carousel-track { height: 300px; }
         }
 
         /* --- ESTILO NUEVO PARA LOGO IMAGEN --- */
@@ -316,10 +350,12 @@
             <img src="/images/logo.png" alt="Lionsss Academy Logo">
         </div>
 
-        <div class="nav-buttons">
+        <button class="hamburger" onclick="toggleMenu()">
+            &#9776; </button>
+
+        <div class="nav-buttons" id="nav-menu">
             <a href="/trainer/login">ENTRENADORES</a>
-            <a href="/admin/login"
-                style="border: 1px solid var(--primary-blue); padding: 8px 15px; border-radius: 20px;">LOGIN ADMIN</a>
+            <a href="/admin/login" style="border: 1px solid var(--primary-blue); padding: 8px 15px; border-radius: 20px;">LOGIN ADMIN</a>
         </div>
     </nav>
 
@@ -418,6 +454,12 @@
 
         // Auto-play: Cambia de foto cada 4 segundos (4000ms)
         setInterval(nextSlide, 4000);
+
+        /* --- LÓGICA DEL MENÚ HAMBURGUESA --- */
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
     </script>
 
 </body>
