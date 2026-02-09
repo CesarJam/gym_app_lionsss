@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Filament\Support\Facades\FilamentView;
 
 class AppServiceProvider extends ServiceProvider
+use Illuminate\Support\Facades\URL;
 {
     /**
      * Register any application services.
